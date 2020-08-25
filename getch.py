@@ -13,11 +13,11 @@ class _getChUnix:
         import sys
         import tty
         import termios
-        fedvar = sys.stdin.fileno()
-        old_settings = termios.tcgetattr(fedvar)
+        fvr = sys.stdin.fileno()
+        old_settings = termios.tcgetattr(fvr)
         try:
             tty.setraw(sys.stdin.fileno())
-            charvar = sys.stdin.read(1)
+            ch = sys.stdin.read(1)
         finally:
-            termios.tcsetattr(fedvar, termios.TCSADRAIN, old_settings)
-        return charvar
+            termios.tcsetattr(fvr, termios.TCSADRAIN, old_settings)
+        return ch
